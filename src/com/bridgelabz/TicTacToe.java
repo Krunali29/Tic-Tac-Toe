@@ -14,7 +14,7 @@ public class TicTacToe
         }
     }
 
-    public void showboard()
+    public void main()
     {
         System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
         System.out.println("---------");
@@ -22,5 +22,6 @@ public class TicTacToe
         System.out.println("---------");
         System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
     }
+
 }
 
