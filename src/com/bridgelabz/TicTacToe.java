@@ -10,7 +10,7 @@ public class TicTacToe
     private static int playLocation;
     private static boolean playerWinToss;
     private static boolean isWinner = false;
-
+    private static int tossResult;
     public static void createBoard()
     {
         for (int index = 1; index < 10; index++)
@@ -43,7 +43,7 @@ public class TicTacToe
         System.out.println("\nPlayer Is Playing");
         System.out.println("\nEnter Location 1-9 to Make Move");
 
-        while (true) {
+        while (true){
 
             playLocation = scannerObject.nextInt();
             scannerObject.nextLine();
