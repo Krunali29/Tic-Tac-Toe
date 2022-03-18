@@ -94,6 +94,41 @@ public class TicTacToe {
             }
             if (predictWinLocationAndBlock()) {
             }
+        } while (!isEmpty(playLocation));
+
+        board[playLocation] = computer;
+        showBoard();
+    }
+
+    public static void occupyCorner() {
+
+        int[] corners = { 1, 3, 7, 9 };
+        int corner = randomGenerator.nextInt(3);
+        playLocation = corners[corner];
+    }
+
+
+    public static boolean occupyCenter() {
+        if (board[1] != ' ' && board[3] != ' ' && board[7] != ' ' && board[9] != ' ') {
+            if (isEmpty(5)) {
+                playLocation = 5;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean occupyOther() {
+        if (board[1] != ' ' && board[3] != ' ' && board[7] != ' ' && board[9] != ' ' && board[5] != ' ') {
+            int[] notCorners = { 2, 4, 6, 8 };
+            int notCorner = randomGenerator.nextInt(3);
+            if (isEmpty(notCorners[notCorner])) {
+                playLocation = notCorners[notCorner];
+                return true;
+            }
+        }
+        return false;
+    }
 
     }
     public static void showBoard()
@@ -402,7 +437,6 @@ public class TicTacToe {
         }
         return false;
     }
-
     public static boolean predictWinLocationAndBlock() {
         if (board[1] == computer && board[2] == computer && board[3] == ' ') {
             playLocation = 3;
@@ -675,6 +709,10 @@ public class TicTacToe {
             }
         } while (!checkWinner() && !checkBoardFull());
         if (checkBoardFull() && !checkWinner())
+            System.out.println("Board is FULL! Game TIED.");
+
+    }
+
             System.out.println("Game TIED.");
 
     }
