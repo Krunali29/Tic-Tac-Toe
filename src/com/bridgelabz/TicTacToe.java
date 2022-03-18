@@ -9,7 +9,7 @@ public class TicTacToe
     static char player, computer;
     private static int playLocation;
     private static int tossResult;
-
+  
     public static void createBoard()
     {
         for (int index = 1; index < 10; index++)
@@ -19,9 +19,9 @@ public class TicTacToe
     }
     public static void getPlayerChoice()
     {
+
         System.out.print("select X or O : ");
         player = Character.toUpperCase(scannerObject.next().charAt(0));
-
         if (player == 'X')
             computer = 'O';
         else
@@ -37,8 +37,7 @@ public class TicTacToe
         System.out.println("---------");
         System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
     }
-
-    public static void userMove()
+     public static void userMove()
     {
         System.out.println("Enter Location 1-9 to Make Move");
         playLocation = scannerObject.nextInt();
@@ -51,8 +50,9 @@ public class TicTacToe
             System.out.println("Invalid Choice");
         }
     }
-    public static boolean isEmpty() {
-        if (board[playLocation] == ' ')
+    public static boolean isEmpty() 
+    {
+       if (board[playLocation] == ' ')
         {
             return true;
         } else
