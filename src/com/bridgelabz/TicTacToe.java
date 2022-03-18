@@ -2,6 +2,28 @@ package com.bridgelabz;
 //Tic Tac Toc Game
 import java.util.Random;
 import java.util.Scanner;
+
+public class TicTacToe {
+
+    public static Scanner scannerObject = new Scanner(System.in);
+    public static final Random randomGenerator = new Random();
+    static char[] board = new char[10];
+    static char player, computer;
+    private static int playLocation;
+    private static boolean playerWinToss;
+    private static boolean isWinner = false;
+
+    public static void createBoard() {
+        for (int index = 1; index < 10; index++) {
+            board[index] = ' ';
+        }
+    }
+
+    public static void getPlayerChoice() {
+
+        System.out.print("Choose X or O : ");
+        player = Character.toUpperCase(scannerObject.next().charAt(0));
+      
 public class TicTacToe {
     public static Scanner scannerObject = new Scanner(System.in);
     static char[] board = new char[10];
@@ -23,12 +45,56 @@ public class TicTacToe {
     public static void getPlayerChoice() {
         System.out.print("select X or O : ");
         player = Character.toUpperCase(scannerObject.next().charAt(0));
+
         if (player == 'X')
             computer = 'O';
         else
             computer = 'X';
         System.out.println("You have selected : " + player);
         System.out.println("Computer's choice is : " + computer);
+    }
+
+    public static void showBoard() {
+        System.out.println();
+        System.out.println("  " + board[1] + "  |  " + board[2] + "   | " + board[3] + "  ");
+        System.out.println("------------------");
+        System.out.println("  " + board[4] + "  |  " + board[5] + "   | " + board[6] + "  ");
+        System.out.println("------------------");
+        System.out.println("  " + board[7] + "  |  " + board[8] + "   | " + board[9] + "  ");
+    }
+
+    public static void userMove() {
+
+        System.out.println("\nPlayer Is Playing");
+        System.out.println("\nEnter Location 1-9 to Make Move");
+
+        while (true) {
+
+            playLocation = scannerObject.nextInt();
+            scannerObject.nextLine();
+            if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
+
+                board[playLocation] = player;
+                showBoard();
+                break;
+            } else {
+                System.out.println("Invalid Choice. Please Enter position again.");
+
+            }
+        }
+    }
+
+    public static void computerMove() {
+        System.out.println("\nComputer Is Playing");
+        do {
+            occupyCorner();
+            if (occupyCenter()) {
+            }
+            if (occupyOther()) {
+            }
+            if (predictWinLocationAndBlock()) {
+            }
+
     }
     public static void showBoard()
     {
@@ -300,11 +366,43 @@ public class TicTacToe {
         do {
             Scanner randomGenerator= new Scanner(System.in);
             playLocation = randomGenerator.nextInt(9) + 1;
+
         } while (!isEmpty(playLocation));
 
         board[playLocation] = computer;
         showBoard();
     }
+
+    public static void occupyCorner() {
+
+        int[] corners = { 1, 3, 7, 9 };
+        int corner = randomGenerator.nextInt(3);
+        playLocation = corners[corner];
+    }
+
+
+    public static boolean occupyCenter() {
+        if (board[1] != ' ' && board[3] != ' ' && board[7] != ' ' && board[9] != ' ') {
+            if (isEmpty(5)) {
+                playLocation = 5;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean occupyOther() {
+        if (board[1] != ' ' && board[3] != ' ' && board[7] != ' ' && board[9] != ' ' && board[5] != ' ') {
+            int[] notCorners = { 2, 4, 6, 8 };
+            int notCorner = randomGenerator.nextInt(3);
+            if (isEmpty(notCorners[notCorner])) {
+                playLocation = notCorners[notCorner];
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean predictWinLocationAndBlock() {
         if (board[1] == computer && board[2] == computer && board[3] == ' ') {
             playLocation = 3;
@@ -518,9 +616,11 @@ public class TicTacToe {
             System.out.println("\nComputer Won The Toss! Computer Starts");
         }
     }
+
     public static void blockOpponent() {
 
     }
+
     public static boolean checkBoardFull() {
         if ((board[1] != ' ') && (board[2] != ' ') && (board[3] != ' ') && (board[4] != ' ') && (board[5] != ' ')
                 && (board[6] != ' ') && (board[7] != ' ') && (board[8] != ' ') && (board[9] != ' ')) {
