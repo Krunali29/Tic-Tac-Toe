@@ -23,6 +23,28 @@ public class TicTacToe {
 
         System.out.print("Choose X or O : ");
         player = Character.toUpperCase(scannerObject.next().charAt(0));
+      
+public class TicTacToe {
+    public static Scanner scannerObject = new Scanner(System.in);
+    static char[] board = new char[10];
+    static char player, computer;
+    private static int playLocation;
+    private static boolean playerWinToss;
+    private static boolean isWinner = false;
+
+    public static void createBoard() {
+        for (int index = 1; index < 10; index++) {
+    private static int tossResult;
+    public static void createBoard()
+    {
+        for (int index = 1; index < 10; index++)
+        {
+            board[index] = ' ';
+        }
+    }
+    public static void getPlayerChoice() {
+        System.out.print("select X or O : ");
+        player = Character.toUpperCase(scannerObject.next().charAt(0));
 
         if (player == 'X')
             computer = 'O';
@@ -72,6 +94,279 @@ public class TicTacToe {
             }
             if (predictWinLocationAndBlock()) {
             }
+
+    }
+    public static void showBoard()
+    {
+        System.out.println(board[1] + " | " + board[2] + " | " + board[3]);
+        System.out.println("---------");
+        System.out.println(board[4] + " | " + board[5] + " | " + board[6]);
+        System.out.println("---------");
+        System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
+    }
+    public static void userMove() {
+
+        System.out.println("\nPlayer Is Playing");
+        System.out.println("\nEnter Location 1-9 to Make Move");
+
+        while (true) {
+
+            playLocation = scannerObject.nextInt();
+            scannerObject.nextLine();
+            if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
+
+                board[playLocation] = player;
+                showBoard();
+                break;
+            } else {
+                System.out.println("Invalid Choice. Please Enter position again.");
+
+            }
+        }
+    }
+
+    public static void computerMove() {
+        System.out.println("\nComputer Is Playing");
+        do {
+            Scanner randomGenerator=new Scanner(System.in);
+            int cornerLocation = randomGenerator.nextInt(4) + 1;
+            if (predictWinLocationAndBlock()) {
+            }
+            else {
+                if(cornerLocation == 1)
+                    playLocation = 1;
+                if(cornerLocation == 2)
+                    playLocation = 3;
+                if(cornerLocation == 3)
+                    playLocation = 7;
+                if(cornerLocation == 4)
+                    playLocation = 9;
+            }
+
+        } while (!isEmpty(playLocation));
+        board[playLocation] = computer;
+        showBoard();
+    }
+
+    public static boolean predictWinLocationAndBlock() {
+        if (board[1] == computer && board[2] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == computer && board[3] == computer && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == computer && board[2] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[4] == computer && board[5] == computer && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[4] == computer && board[6] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[6] == computer && board[5] == computer && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == computer && board[8] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[7] == computer && board[9] == computer && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[9] == computer && board[8] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == computer && board[4] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == computer && board[7] == computer && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == computer && board[4] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[2] == computer && board[5] == computer && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[2] == computer && board[8] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[8] == computer && board[5] == computer && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == computer && board[6] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[3] == computer && board[9] == computer && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[9] == computer && board[6] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == computer && board[5] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[1] == computer && board[9] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[9] == computer && board[5] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[3] == computer && board[5] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[3] == computer && board[7] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[7] == computer && board[5] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == player && board[2] == player && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == player && board[3] == player && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == player && board[2] == player && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[4] == player && board[5] == player && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[4] == player && board[6] == player && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[6] == player && board[5] == player && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == player && board[8] == player && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[7] == player && board[9] == player && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[9] == player && board[8] == player && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == player && board[4] == player && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == player && board[7] == player && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == player && board[4] == player && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[2] == player && board[5] == player && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[2] == player && board[8] == player && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[8] == player && board[5] == player && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == player && board[6] == player && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[3] == player && board[9] == player && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[9] == player && board[6] == player && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == player && board[5] == player && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[1] == player && board[9] == player && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[9] == player && board[5] == player && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[3] == player && board[5] == player && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[3] == player && board[7] == player && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[7] == player && board[5] == player && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        } else
+            return false;
+    }
+    public static boolean isEmpty(int location) {
+        return board[location] == ' ';
+
+    }
+
+    public static void checkToss() {
+
+        playLocation = scannerObject.nextInt();
+        scannerObject.nextLine();
+        if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
+
+            board[playLocation] = player;
+            showBoard();
+        } else {
+            System.out.println("Invalid Choice");
+
+        }
+    }
+    public static void computerMove() {
+        System.out.println("\nComputer Is Playing");
+        do {
+            Scanner randomGenerator= new Scanner(System.in);
+            playLocation = randomGenerator.nextInt(9) + 1;
+
         } while (!isEmpty(playLocation));
 
         board[playLocation] = computer;
@@ -320,6 +615,10 @@ public class TicTacToe {
             playerWinToss = false;
             System.out.println("\nComputer Won The Toss! Computer Starts");
         }
+    }
+
+    public static void blockOpponent() {
+
     }
 
     public static boolean checkBoardFull() {
