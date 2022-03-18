@@ -43,9 +43,7 @@ public class TicTacToe
         System.out.println("\nPlayer Is Playing");
         System.out.println("\nEnter Location 1-9 to Make Move");
 
-        while (true){
-
-            playLocation = scannerObject.nextInt();
+           playLocation = scannerObject.nextInt();
             scannerObject.nextLine();
             if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
 
@@ -255,4 +253,3 @@ public class TicTacToe
 
     }
 }
-
