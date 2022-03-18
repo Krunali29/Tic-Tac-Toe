@@ -39,8 +39,7 @@ public class TicTacToe
         System.out.println("---------");
         System.out.println(board[7] + " | " + board[8] + " | " + board[9]);
     }
-
-    public static void userMove()
+     public static void userMove()
     {
         System.out.println("Enter Location 1-9 to Make Move");
         playLocation = scannerObject.nextInt();
